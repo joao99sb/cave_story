@@ -1,9 +1,8 @@
 #ifndef GAME_H_
 #define GAME_H_
-#include<SDL2/SDL.h>
+#include <SDL2/SDL.h>
 
-
-struct SDL_Window; 
+struct SDL_Window;
 
 struct Game
 {
@@ -15,8 +14,7 @@ private:
   void update();
   void draw();
 
-  SDL_Window* screen;
+  SDL_Window *screen;
 };
-
 
 #endif

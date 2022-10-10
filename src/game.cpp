@@ -1,12 +1,21 @@
 #include "game.h"
 
+namespace
+{
+  const int kScreenWidth = 1280;
+  const int kScreenHeight = 720;
+  const int kBitsPerPixel = 32;
+  const int kFps = 60;
+}
+
 Game::Game()
 {
   SDL_Init(SDL_INIT_EVERYTHING);
+  SDL_ShowCursor(SDL_DISABLE);
   screen = SDL_CreateWindow("My Game ",
                             SDL_WINDOWPOS_CENTERED,
                             SDL_WINDOWPOS_CENTERED,
-                            0, 0,
+                            kScreenWidth, kScreenHeight,
                             SDL_WINDOW_FULLSCREEN);
   eventLoop();
 }
@@ -29,7 +38,7 @@ void Game::eventLoop()
   bool runnig = true;
   while (runnig)
   {
-    const int start_time_ms = SDL_GetTicks();
+    const int start_time_ms = SDL_GetTicks64();
     while (SDL_PollEvent(&event))
     {
       switch (event.type)
@@ -47,9 +56,13 @@ void Game::eventLoop()
 
     update();
     draw();
-    const int elapsed_time_ms = SDL_GetTicks() - start_time_ms;
+    const int elapsed_time_ms = SDL_GetTicks64() - start_time_ms;
     // this loop last 1/60 of seconds  1000/60th ms
-    SDL_Delay(1000 /*ms*/ / 60 - elapsed_time_ms /*fps*/);
+    const float delay = 1000 /*ms*/ / (kFps - elapsed_time_ms); /*fps*/
+    SDL_Delay(delay);
+
+    const int fps = 1000.0 / (SDL_GetTicks64() - start_time_ms);
+    printf("fps=%d\n", fps);
   }
 }
 
