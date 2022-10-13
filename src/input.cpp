@@ -8,13 +8,13 @@ void Input::beginNewFrame()
 
 void Input::keyUpEvent(const SDL_Event &event)
 {
-  pressed_keys[event.key.keysym.sym] = true;
-  held_keys[event.key.keysym.sym] = true;
+  released_keys[event.key.keysym.sym] = true;
+  held_keys[event.key.keysym.sym] = false;
 }
 void Input::keyDownEvent(const SDL_Event &event)
 {
-  released_keys[event.key.keysym.sym] = true;
-  held_keys[event.key.keysym.sym] = false;
+  pressed_keys[event.key.keysym.sym] = true;
+  held_keys[event.key.keysym.sym] = true;
 }
 
 bool Input::wasKeyPressed(SDLKey key)

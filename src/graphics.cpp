@@ -10,14 +10,14 @@ namespace
 
 Graphics::Graphics()
 {
-  window = SDL_SetVideoMode(kScreenWidth, kScreenHeight, kBitsPerPixel,  SDL_FULLSCREEN);
+  window = SDL_SetVideoMode(kScreenWidth, kScreenHeight, kBitsPerPixel, SDL_DOUBLEBUF | SDL_FULLSCREEN);
 }
 
 Graphics::~Graphics()
 {
   SDL_FreeSurface(window);
 }
- 
+
 void Graphics::blitSurface(SDL_Surface *source,
                            SDL_Rect *source_rectangle,
                            SDL_Rect *destination_rectangle)
@@ -25,7 +25,12 @@ void Graphics::blitSurface(SDL_Surface *source,
   SDL_BlitSurface(source, source_rectangle, window, destination_rectangle);
 }
 
-void Graphics::flip() 
+void Graphics::flip()
 {
   SDL_Flip(window);
+}
+
+void Graphics::clear()
+{
+  SDL_FillRect(window, NULL /*destination_rectangle*/, 0 /*color*/);
 }

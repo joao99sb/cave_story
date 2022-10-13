@@ -4,6 +4,7 @@
 #include <SDL/SDL.h>
 #include <boost/scoped_ptr.hpp>
 #include "sprite.h"
+#include "player.h"
 
 
 struct Game
@@ -22,7 +23,7 @@ private:
   // to know more about scoped_ptr: https://www.boost.org/doc/libs/1_61_0/libs/smart_ptr/scoped_ptr.htm
   // basically this template class guarantees deletion of the pointer
 
-  boost::scoped_ptr<Sprite> sprite;
+  boost::scoped_ptr<Player> player;
 };
 
 #endif
