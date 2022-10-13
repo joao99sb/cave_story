@@ -1,0 +1,13 @@
+typedef SDL_Texture* SurfaceId
+
+typedef std::map<std::string, SDL_Texture>
+
+SDL_FreeSurface to SDL_DestroyTexture
+
+
+
+SDL_SetColorKey(image,*SDL_TRUE*,...)
+
+after set color key, create a new texture
+sprite_sheets[file_path] = SDL_CreateTextureFromSurface(render,image)
+SDL_FreeSurface(image)

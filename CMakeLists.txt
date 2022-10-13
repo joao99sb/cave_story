@@ -11,7 +11,17 @@ set(CMAKE_CXX_COMPILE "/usr/bin/g++")
 # file(GLOB  SRC_FILES src/*.h src/*.cpp)
 # add_executable(cave_story_bin src/main.cpp ${SRC_FILES})
 
-add_executable(cave_story_bin src/main.cpp src/game.cpp src/game.h)
-target_link_libraries(cave_story_bin SDL2main SDL2)
+add_executable(cave_story_bin src/main.cpp 
+              #headers
+              src/game.h
+              src/graphics.h
+              src/sprite.h
+
+              #cpp
+              src/game.cpp
+              src/graphics.cpp
+              src/sprite.cpp)
+              
+target_link_libraries(cave_story_bin SDLmain SDL${Boost_LIBRARIES} )
 
 target_compile_features(cave_story_bin PRIVATE cxx_std_14)

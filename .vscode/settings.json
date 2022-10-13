@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    ".eslintrc": "javascript",
+    "*.tcc": "cpp",
+    "compare": "cpp",
+    "limits": "cpp",
+    "new": "cpp",
+    "cmath": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "system_error": "cpp",
+    "typeinfo": "cpp"
+  }
+}
