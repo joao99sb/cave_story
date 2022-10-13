@@ -10,7 +10,7 @@ namespace
 
 Graphics::Graphics()
 {
-  window = SDL_SetVideoMode(kScreenWidth, kScreenHeight, kBitsPerPixel, SDL_DOUBLEBUF | SDL_FULLSCREEN);
+  window = SDL_SetVideoMode(kScreenWidth, kScreenHeight, kBitsPerPixel,  SDL_FULLSCREEN);
 }
 
 Graphics::~Graphics()

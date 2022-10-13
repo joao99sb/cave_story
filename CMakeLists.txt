@@ -16,11 +16,13 @@ add_executable(cave_story_bin src/main.cpp
               src/game.h
               src/graphics.h
               src/sprite.h
+              src/animated_sprite.h
 
               #cpp
               src/game.cpp
               src/graphics.cpp
-              src/sprite.cpp)
+              src/sprite.cpp
+              src/animated_sprite.cpp)
               
 target_link_libraries(cave_story_bin SDLmain SDL${Boost_LIBRARIES} )
 

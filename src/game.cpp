@@ -1,9 +1,8 @@
 #include "game.h"
-#include "graphics.h"
+#include "animated_sprite.h"
 
 namespace
 {
-
   const int kFps = 60;
 }
 
@@ -17,9 +16,11 @@ Game::Game()
 
 Game::~Game()
 {
-
   SDL_Quit();
 }
+
+// static
+int Game::Tile_size = 32;
 
 void Game::eventLoop()
 {
@@ -31,15 +32,15 @@ void Game::eventLoop()
 
   Graphics graphics;
 
-  sprite.reset(new Sprite("content/MyChar.bmp", 0, 0, 32, 32));
+  sprite.reset(new AnimatedSprite("content/MyChar.bmp", 0, 0, Tile_size, Tile_size, 15, 3));
 
   auto x = sprite.get();
 
   SDL_Event event;
 
-  
   runnig = true;
 
+  int last_updated_time = SDL_GetTicks();
   while (runnig)
   {
     const int start_time_ms = SDL_GetTicks();
@@ -57,25 +58,26 @@ void Game::eventLoop()
         break;
       }
     }
+    const int current_time_ms = SDL_GetTicks();
 
-    update();
+    update(current_time_ms - last_updated_time);
+    
     draw(graphics);
     const int elapsed_time_ms = SDL_GetTicks() - start_time_ms;
+    
     // this loop last 1/60 of seconds  1000/60th ms
     const float delay = 1000 /*ms*/ / (kFps - elapsed_time_ms); /*fps*/
     SDL_Delay(delay);
-
-    // const int fps = 1000.0 / (SDL_GetTicks() - start_time_ms);
-    // printf("fps=%d\n", fps);
   }
 }
 
-void Game::update()
+void Game::update(int elapsed_time_ms)
 {
+  sprite->update(elapsed_time_ms);
 }
 
-void Game::draw(Graphics & graphics)
+void Game::draw(Graphics &graphics)
 {
-  sprite->draw(graphics,30,240);
+  sprite->draw(graphics, 30, 240);
   graphics.flip();
 }
