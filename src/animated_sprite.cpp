@@ -19,7 +19,6 @@ void AnimatedSprite::update(int elapsed_time_ms)
   {
     ++current_frame;
     elapsed_time = 0;
-    std::cout << frames_num << std::endl;
     if (current_frame < frames_num)
     {
       source_rect.x += Game::Tile_size;

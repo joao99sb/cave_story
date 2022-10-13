@@ -5,6 +5,7 @@
 #include <boost/scoped_ptr.hpp>
 #include "sprite.h"
 
+
 struct Game
 {
   Game();
